@@ -154,9 +154,51 @@ function TestimonialCard({ testimonial }: {testimonial: Testimonial;}) {
   };
 
   return (
+    <div className="flex-shrink-0 flex items-center gap-4 rounded-xl border border-gray-100 overflow-hidden" style={{ width: 380, borderRadius: 12 }}>
+      {/* Video */}
+      <div className="relative flex-shrink-0 cursor-pointer" style={{ width: 200, height: 220, borderRadius: 12, overflow: 'hidden' }} onClick={togglePlay}>
+        <video
+          ref={videoRef}
+          src={testimonial.video}
+          poster={testimonial.poster}
+          playsInline
+          className="w-full h-full object-cover"
+          style={{ borderRadius: 12 }} />
 
+        {!playing &&
+        <div className="absolute inset-0 flex items-center justify-center">
+            <div className="w-9 h-9 rounded-full flex items-center justify-center" style={{ backdropFilter: 'blur(5px)', backgroundColor: 'rgba(255,255,255,0.12)' }}>
+              <svg width="10" height="12" viewBox="0 0 8.4 9.6" fill="white">
+                <path d="M 8.4 4.8 C 8.401 5.055 8.263 5.292 8.037 5.424 L 1.161 9.491 C 0.986 9.595 0.776 9.626 0.578 9.578 C 0.379 9.53 0.208 9.408 0.104 9.237 C 0.036 9.125 0 8.998 0 8.868 L 0 0.733 C 0 0.468 0.148 0.224 0.387 0.095 C 0.628 -0.036 0.924 -0.031 1.161 0.109 L 8.037 4.177 C 8.263 4.308 8.401 4.545 8.4 4.8 Z" />
+              </svg>
+            </div>
+          </div>
+        }
+      </div>
 
+      {/* Text */}
+      <div className="flex-1 flex flex-col justify-between py-6 pr-4" style={{ minHeight: 140 }}>
+        <p className="text-sm font-medium leading-snug mb-3" style={{ fontFamily: 'Hanken Grotesk, sans-serif', color: '#000', letterSpacing: '-0.3px', lineHeight: '140%' }}>
+          {testimonial.text}{' '}
+          <mark className="mark-highlight">{testimonial.highlight}</mark>
+          {testimonial.textAfter && <> {testimonial.textAfter}</>}
+        </p>
+        <div className="flex items-center gap-2">
+          <img src={testimonial.avatar} alt={testimonial.name} className="w-6 h-6 rounded object-cover" />
+          <div>
+            <div className="flex items-center gap-1">
+              <span className="text-xs font-semibold" style={{ fontFamily: 'Hanken Grotesk, sans-serif' }}>{testimonial.name}</span>
+              <svg width="8" height="8" viewBox="0 0 7.909 7.909" fill="#4aadf4">
+                <path d="M 7.389 3.002 C 7.269 2.877 7.145 2.747 7.105 2.649 C 7.069 2.562 7.066 2.383 7.064 2.224 C 7.059 1.884 7.052 1.459 6.751 1.159 C 6.449 0.857 6.025 0.852 5.685 0.845 C 5.527 0.843 5.347 0.84 5.259 0.804 C 5.162 0.764 5.032 0.64 4.907 0.52 C 4.666 0.288 4.365 0 3.955 0 C 3.544 0 3.243 0.288 3.002 0.52 C 2.877 0.64 2.747 0.764 2.649 0.804 C 2.562 0.84 2.383 0.843 2.224 0.845 C 1.884 0.852 1.459 0.857 1.159 1.159 C 0.859 1.461 0.852 1.884 0.845 2.224 C 0.843 2.383 0.84 2.563 0.804 2.65 C 0.764 2.747 0.64 2.877 0.52 3.002 C 0.288 3.243 0 3.545 0 3.955 C 0 4.364 0.288 4.666 0.52 4.909 C 0.64 5.034 0.764 5.164 0.804 5.261 C 0.84 5.348 0.843 5.528 0.845 5.687 C 0.851 6.027 0.857 6.451 1.158 6.752 C 1.46 7.053 1.884 7.059 2.224 7.065 C 2.383 7.068 2.563 7.071 2.65 7.107 C 2.747 7.147 2.877 7.271 3.002 7.391 C 3.243 7.621 3.545 7.909 3.955 7.909 C 4.364 7.909 4.666 7.621 4.907 7.389 C 5.032 7.269 5.162 7.145 5.26 7.105 C 5.347 7.069 5.527 7.066 5.685 7.064 C 6.025 7.059 6.45 7.052 6.751 6.751 C 7.052 6.449 7.057 6.025 7.064 5.685 C 7.066 5.527 7.069 5.347 7.105 5.259 C 7.145 5.162 7.269 5.032 7.389 4.907 C 7.621 4.666 7.909 4.365 7.909 3.955 C 7.909 3.544 7.621 3.243 7.389 3.002 Z" />
+              </svg>
+            </div>
+            <p className="text-xs opacity-40" style={{ fontFamily: 'Hanken Grotesk, sans-serif' }}>{testimonial.clinic}</p>
+          </div>
+        </div>
+      </div>
+    </div>);
 
+}
 
 // ─── 3 STEPS SECTION ──────────────────────────────────────────────────────────────────────
 export function ThreeStepsSection() {
