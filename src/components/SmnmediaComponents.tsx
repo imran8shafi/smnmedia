@@ -252,7 +252,6 @@ export function CaseStudiesSection() {
                     <img src={c.logo} alt="clinic logo" className="h-8 object-contain opacity-90" />
                   </div>
                   <div className="absolute bottom-0 left-0 right-0 p-4">
-                    <h3 className="text-white text-sm font-semibold leading-snug" style={{ fontFamily: 'Hanken Grotesk, sans-serif' }}>{c.title}</h3>
                     <div className="flex items-center gap-1 mt-2 opacity-0 group-hover:opacity-100 transition-opacity">
                       <span className="text-white text-xs" style={{ fontFamily: 'Hanken Grotesk, sans-serif' }}>Read story</span>
                       <svg width="8" height="13" viewBox="0 0 4 8" fill="none"><path d="M0.5 0.5L3.5 4L0.5 7.5" stroke="white" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
