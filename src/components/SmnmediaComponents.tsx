@@ -246,8 +246,10 @@ export function CaseStudiesSection() {
                 style={{ height: 200, boxShadow: '0 2px 12px rgba(0,0,0,0.15)' }}
                 onClick={() => setActiveIdx(i)}>
 
+                  <img src={c.img} alt={c.title} className="w-full h-full object-cover" />
                   {/* Logo */}
                   <div className="absolute top-3 left-3">
+                    <img src={c.logo} alt="clinic logo" className="h-8 object-contain opacity-90" />
                   </div>
                   <div className="absolute bottom-0 left-0 right-0 p-4">
                     <div className="flex items-center gap-1 mt-2 opacity-0 group-hover:opacity-100 transition-opacity">
@@ -263,6 +265,7 @@ export function CaseStudiesSection() {
             <div className="flex items-center justify-around mt-6 gap-4">
               {cases.map((c, i) =>
               <button key={i} onClick={() => setActiveIdx(i)} className="transition-opacity" style={{ opacity: i === activeIdx ? 1 : 0.35 }}>
+                  <img src={c.logo} alt="logo" className="h-8 object-contain" />
                 </button>
               )}
             </div>
