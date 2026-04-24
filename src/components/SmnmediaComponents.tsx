@@ -1,8 +1,10 @@
 'use client';
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 
-// ─── NAVBAR ───────────────────────────────────────────────────────────────────
+/* ══════════════════════════════════════════════════════════════════════════
+   NAVBAR (single element – kept as is)
+   ══════════════════════════════════════════════════════════════════════════ */
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -27,7 +29,6 @@ export function Navbar() {
           height={33}
           style={{ objectFit: 'contain' }}
           priority />
-
       </a>
 
       {/* Desktop Nav */}
@@ -43,14 +44,12 @@ export function Navbar() {
           href="#"
           className="px-3 py-1.5 text-sm border border-gray-200 rounded-lg text-gray-800 hover:bg-gray-50 transition-colors"
           style={{ fontFamily: 'Hanken Grotesk, sans-serif' }}>
-
           Log in
         </a>
         <a
           href="#configure"
           className="relative px-4 py-1.5 text-sm rounded-lg text-white font-medium overflow-hidden transition-opacity hover:opacity-90"
           style={{ backgroundColor: '#d9347e', fontFamily: 'Hanken Grotesk, sans-serif' }}>
-
           <span className="relative z-10">Build my app</span>
           <div className="absolute inset-0 overflow-hidden">
             <div className="float-blob-1 absolute top-[20%] left-[10%] w-24 h-24 rounded-full" style={{ background: 'radial-gradient(circle, rgb(112,1,220), transparent)', filter: 'blur(20px)' }} />
@@ -76,10 +75,11 @@ export function Navbar() {
         </div>
       }
     </header>);
-
 }
 
-// ─── HERO SECTION ─────────────────────────────────────────────────────────────
+/* ══════════════════════════════════════════════════════════════════════════
+   HERO SECTION – feature tabs are each their OWN uniquely-named component
+   ══════════════════════════════════════════════════════════════════════════ */
 export function HeroSection() {
   return (
     <section className="relative flex flex-col items-center pt-32 pb-0 bg-white overflow-hidden">
@@ -87,7 +87,6 @@ export function HeroSection() {
         <h1
           className="text-4xl md:text-5xl font-semibold leading-tight tracking-tight text-black mb-3"
           style={{ fontFamily: 'Hanken Grotesk, sans-serif', letterSpacing: '-0.2px' }}>
-
           Sell more treatments &amp; packages
         </h1>
         <p className="text-base text-gray-500 mb-6" style={{ fontFamily: 'Hanken Grotesk, sans-serif' }}>See how</p>
@@ -99,13 +98,13 @@ export function HeroSection() {
 
       {/* Phone mockup + tabs */}
       <div className="relative w-full flex flex-col items-center">
-        {/* Feature tabs above phone */}
+        {/* Feature tabs above phone – each is its own component */}
         <div className="hidden md:flex items-start justify-center gap-0 w-full max-w-3xl mb-0 relative z-10">
-          <FeatureTab label="Automated Offers" icon="offers" active />
-          <FeatureTab label="Patient financing" icon="financing" />
+          <FeatureTab1 />
+          <FeatureTab2 />
           <div className="w-[340px]" />{/* phone spacer */}
-          <FeatureTab label="Rewards" icon="rewards" />
-          <FeatureTab label="Memberships" icon="memberships" />
+          <FeatureTab3 />
+          <FeatureTab4 />
         </div>
 
         {/* Dark background section */}
@@ -130,7 +129,6 @@ export function HeroSection() {
                   height="708"
                   style={{ border: 'none', background: 'transparent', borderRadius: 40 }}
                   title="App demo" />
-
               </div>
             </div>
 
@@ -155,123 +153,217 @@ export function HeroSection() {
         </div>
       </div>
     </section>);
-
 }
 
-function FeatureTab({ label, active }: {label: string;icon: string;active?: boolean;}) {
+/* ── Feature Tab 1 – Automated Offers (active) ──────────────────────────── */
+function FeatureTab1() {
   return (
-    <div
-      className={`flex flex-col items-center gap-2 px-4 py-6 cursor-pointer w-40 ${
-      active ? 'opacity-100' : 'opacity-50 hover:opacity-75'} transition-opacity`
-      }>
-
-      <div
-        className="w-6 h-6 rounded-full"
-        style={{ backgroundColor: active ? '#d9347e' : '#6f6f6f' }} />
-
-      <p className="text-xs text-center" style={{ fontFamily: 'Hanken Grotesk, sans-serif', color: active ? '#000' : '#5d5b5b' }}>{label}</p>
-    </div>);
-
+    <div className="flex flex-col items-center gap-2 px-4 py-6 cursor-pointer w-40 opacity-100 transition-opacity">
+      <div className="w-6 h-6 rounded-full" style={{ backgroundColor: '#d9347e' }} />
+      <p className="text-xs text-center" style={{ fontFamily: 'Hanken Grotesk, sans-serif', color: '#000' }}>Automated Offers</p>
+    </div>
+  );
 }
 
-// ─── CASE STUDIES SECTION ─────────────────────────────────────────────────────
+/* ── Feature Tab 2 – Patient financing ──────────────────────────────────── */
+function FeatureTab2() {
+  return (
+    <div className="flex flex-col items-center gap-2 px-4 py-6 cursor-pointer w-40 opacity-50 hover:opacity-75 transition-opacity">
+      <div className="w-6 h-6 rounded-full" style={{ backgroundColor: '#6f6f6f' }} />
+      <p className="text-xs text-center" style={{ fontFamily: 'Hanken Grotesk, sans-serif', color: '#5d5b5b' }}>Patient financing</p>
+    </div>
+  );
+}
+
+/* ── Feature Tab 3 – Rewards ────────────────────────────────────────────── */
+function FeatureTab3() {
+  return (
+    <div className="flex flex-col items-center gap-2 px-4 py-6 cursor-pointer w-40 opacity-50 hover:opacity-75 transition-opacity">
+      <div className="w-6 h-6 rounded-full" style={{ backgroundColor: '#6f6f6f' }} />
+      <p className="text-xs text-center" style={{ fontFamily: 'Hanken Grotesk, sans-serif', color: '#5d5b5b' }}>Rewards</p>
+    </div>
+  );
+}
+
+/* ── Feature Tab 4 – Memberships ────────────────────────────────────────── */
+function FeatureTab4() {
+  return (
+    <div className="flex flex-col items-center gap-2 px-4 py-6 cursor-pointer w-40 opacity-50 hover:opacity-75 transition-opacity">
+      <div className="w-6 h-6 rounded-full" style={{ backgroundColor: '#6f6f6f' }} />
+      <p className="text-xs text-center" style={{ fontFamily: 'Hanken Grotesk, sans-serif', color: '#5d5b5b' }}>Memberships</p>
+    </div>
+  );
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   CASE STUDIES SECTION
+   – Stats panel is its own component (hardcoded)
+   – Each case card is its OWN uniquely-named component (CaseStudy1..4)
+   – Each logo button is its OWN uniquely-named component (CaseStudyLogoBtn1..4)
+   ══════════════════════════════════════════════════════════════════════════ */
 export function CaseStudiesSection() {
-  const cases = [
-  {
-    title: "See how UK's 8-location Cultskin uses SMNMEDIA to keep its dominance over aesthetics market",
-    img: 'https://framerusercontent.com/images/IePmQxqBwmWzJJGI20KOjB7Uvw4.webp?width=1283&height=711',
-    logo: 'https://framerusercontent.com/images/1SMWONWvvsjdpjjZn4f9oBd8xoo.png?width=730&height=244',
-    stats: [{ label: 'Locations', value: '+8' }, { label: 'Reduction in patient management software costs', value: '-27%' }],
-    products: ['Memberships', 'Automated offers']
-  },
-  {
-    title: 'See how SLA Medical used SMNMEDIA to increase average patient spend by 60%',
-    img: 'https://framerusercontent.com/images/IePmQxqBwmWzJJGI20KOjB7Uvw4.webp?width=1283&height=711',
-    logo: 'https://framerusercontent.com/images/D1KYr6d9JuRnXi9g07U5YqPq4.png?width=414&height=229',
-    stats: [{ label: 'Jump in average patient spend', value: '+60%' }, { label: 'Additional ARR', value: '+£24K' }],
-    products: ['Memberships', 'Rewards']
-  },
-  {
-    title: 'How JM Medispa added +£40,000, +32 Google Reviews, and +29 Referrals in her first 45 Days using SMNMEDIA',
-    img: 'https://framerusercontent.com/images/t7a8XEB9Lx726pktH6TT9ZkhSsI.jpg?width=1200&height=675',
-    logo: 'https://framerusercontent.com/images/BgY9sw1sb9dD1A4C2ftZ7qHYic.webp?width=876&height=379',
-    stats: [{ label: 'Added in first 45 days', value: '+£40K' }, { label: 'In-App Referrals in first 45 days', value: '+29' }],
-    products: ['Memberships']
-  },
-  {
-    title: 'Why Harvey Nichols clinic owner Dr. Zoya chose SMNMEDIA to exceed patient expectations',
-    img: 'https://framerusercontent.com/images/ggqZxW5RaEzS3HzRC5S6O6Lv7sM.webp?width=1282&height=711',
-    logo: 'https://framerusercontent.com/images/nReJkgaUdJPs6auYmyCSBpmxT8I.png?width=2048&height=1106',
-    stats: [],
-    products: []
-  }];
-
-
-  const [activeIdx, setActiveIdx] = useState(1);
-
   return (
     <section className="bg-white py-12">
       <div className="max-w-5xl mx-auto px-6 md:px-10">
         <div className="flex flex-col md:flex-row gap-6">
           {/* Stats panel */}
           <div className="w-full md:w-56 flex-shrink-0">
-            <div className="border-l-2 pl-4 mb-4" style={{ borderColor: '#d9347e' }}>
-              <h4 className="text-xl font-bold" style={{ fontFamily: 'Hanken Grotesk, sans-serif', color: '#0a2540' }}>{cases[activeIdx]?.stats[0]?.value || '+8'}</h4>
-              <p className="text-sm" style={{ fontFamily: 'Hanken Grotesk, sans-serif', color: '#435266' }}>{cases[activeIdx]?.stats[0]?.label || 'Locations'}</p>
-            </div>
-            <div className="border-l-2 pl-4 mb-4" style={{ borderColor: '#d9347e' }}>
-              <h4 className="text-xl font-bold" style={{ fontFamily: 'Hanken Grotesk, sans-serif', color: '#0a2540' }}>{cases[activeIdx]?.stats[1]?.value || '-27%'}</h4>
-              <p className="text-sm" style={{ fontFamily: 'Hanken Grotesk, sans-serif', color: '#435266' }}>{cases[activeIdx]?.stats[1]?.label || 'Reduction in patient management software costs'}</p>
-            </div>
-            {cases[activeIdx]?.products?.length > 0 &&
-            <div className="pl-4">
-                <p className="text-sm font-semibold mb-2" style={{ fontFamily: 'Hanken Grotesk, sans-serif', color: '#0a2540' }}>Products used</p>
-                {cases[activeIdx].products.map((p) =>
-              <div key={p} className="flex items-center gap-2 mb-1">
-                    <div className="w-4 h-4 rounded-full" style={{ backgroundColor: '#d9347e' }} />
-                    <span className="text-sm" style={{ fontFamily: 'Hanken Grotesk, sans-serif', color: '#435266' }}>{p}</span>
-                  </div>
-              )}
-              </div>
-            }
+            <CaseStudyStats />
           </div>
 
           {/* Case study cards */}
           <div className="flex-1">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {cases.map((c, i) =>
-              <div
-                key={i}
-                className="relative rounded-xl overflow-hidden cursor-pointer group"
-                style={{ height: 200, boxShadow: '0 2px 12px rgba(0,0,0,0.15)' }}
-                onClick={() => setActiveIdx(i)}>
-
-                  <img src={c.img} alt={c.title} className="w-full h-full object-cover" />
-                  {/* Logo */}
-                  <div className="absolute top-3 left-3">
-                    <img src={c.logo} alt="clinic logo" className="h-8 object-contain opacity-90" />
-                  </div>
-                  <div className="absolute bottom-0 left-0 right-0 p-4">
-                    <div className="flex items-center gap-1 mt-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                      <span className="text-white text-xs" style={{ fontFamily: 'Hanken Grotesk, sans-serif' }}>Read story</span>
-                      <svg width="8" height="13" viewBox="0 0 4 8" fill="none"><path d="M0.5 0.5L3.5 4L0.5 7.5" stroke="white" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
-                    </div>
-                  </div>
-                </div>
-              )}
+              <CaseStudy1 />
+              <CaseStudy2 />
+              <CaseStudy3 />
+              <CaseStudy4 />
             </div>
 
-            {/* Logo bar */}
+            {/* Logo bar – each is its own component */}
             <div className="flex items-center justify-around mt-6 gap-4">
-              {cases.map((c, i) =>
-              <button key={i} onClick={() => setActiveIdx(i)} className="transition-opacity" style={{ opacity: i === activeIdx ? 1 : 0.35 }}>
-                  <img src={c.logo} alt="logo" className="h-8 object-contain" />
-                </button>
-              )}
+              <CaseStudyLogoBtn1 />
+              <CaseStudyLogoBtn2 />
+              <CaseStudyLogoBtn3 />
+              <CaseStudyLogoBtn4 />
             </div>
           </div>
         </div>
       </div>
     </section>);
+}
 
+/* ── Case Study Stats Panel (hardcoded – SLA Medical) ───────────────────── */
+function CaseStudyStats() {
+  return (
+    <>
+      <div className="border-l-2 pl-4 mb-4" style={{ borderColor: '#d9347e' }}>
+        <h4 className="text-xl font-bold" style={{ fontFamily: 'Hanken Grotesk, sans-serif', color: '#0a2540' }}>+60%</h4>
+        <p className="text-sm" style={{ fontFamily: 'Hanken Grotesk, sans-serif', color: '#435266' }}>Jump in average patient spend</p>
+      </div>
+      <div className="border-l-2 pl-4 mb-4" style={{ borderColor: '#d9347e' }}>
+        <h4 className="text-xl font-bold" style={{ fontFamily: 'Hanken Grotesk, sans-serif', color: '#0a2540' }}>+£24K</h4>
+        <p className="text-sm" style={{ fontFamily: 'Hanken Grotesk, sans-serif', color: '#435266' }}>Additional ARR</p>
+      </div>
+      <div className="pl-4">
+        <p className="text-sm font-semibold mb-2" style={{ fontFamily: 'Hanken Grotesk, sans-serif', color: '#0a2540' }}>Products used</p>
+        <div className="flex items-center gap-2 mb-1">
+          <div className="w-4 h-4 rounded-full" style={{ backgroundColor: '#d9347e' }} />
+          <span className="text-sm" style={{ fontFamily: 'Hanken Grotesk, sans-serif', color: '#435266' }}>Memberships</span>
+        </div>
+        <div className="flex items-center gap-2 mb-1">
+          <div className="w-4 h-4 rounded-full" style={{ backgroundColor: '#d9347e' }} />
+          <span className="text-sm" style={{ fontFamily: 'Hanken Grotesk, sans-serif', color: '#435266' }}>Rewards</span>
+        </div>
+      </div>
+    </>
+  );
+}
+
+/* ── Case Study 1 – Cultskin ────────────────────────────────────────────── */
+function CaseStudy1() {
+  return (
+    <div className="relative rounded-xl overflow-hidden cursor-pointer group" style={{ height: 200, boxShadow: '0 2px 12px rgba(0,0,0,0.15)' }}>
+      <img src="https://framerusercontent.com/images/IePmQxqBwmWzJJGI20KOjB7Uvw4.webp?width=1283&height=711" alt="See how UK's 8-location Cultskin uses SMNMEDIA to keep its dominance over aesthetics market" className="w-full h-full object-cover" />
+      <div className="absolute top-3 left-3">
+        <img src="https://framerusercontent.com/images/1SMWONWvvsjdpjjZn4f9oBd8xoo.png?width=730&height=244" alt="Cultskin logo" className="h-8 object-contain opacity-90" />
+      </div>
+      <div className="absolute bottom-0 left-0 right-0 p-4">
+        <div className="flex items-center gap-1 mt-2 opacity-0 group-hover:opacity-100 transition-opacity">
+          <span className="text-white text-xs" style={{ fontFamily: 'Hanken Grotesk, sans-serif' }}>Read story</span>
+          <svg width="8" height="13" viewBox="0 0 4 8" fill="none"><path d="M0.5 0.5L3.5 4L0.5 7.5" stroke="white" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ── Case Study 2 – SLA Medical ─────────────────────────────────────────── */
+function CaseStudy2() {
+  return (
+    <div className="relative rounded-xl overflow-hidden cursor-pointer group" style={{ height: 200, boxShadow: '0 2px 12px rgba(0,0,0,0.15)' }}>
+      <img src="https://framerusercontent.com/images/IePmQxqBwmWzJJGI20KOjB7Uvw4.webp?width=1283&height=711" alt="See how SLA Medical used SMNMEDIA to increase average patient spend by 60%" className="w-full h-full object-cover" />
+      <div className="absolute top-3 left-3">
+        <img src="https://framerusercontent.com/images/D1KYr6d9JuRnXi9g07U5YqPq4.png?width=414&height=229" alt="SLA Medical logo" className="h-8 object-contain opacity-90" />
+      </div>
+      <div className="absolute bottom-0 left-0 right-0 p-4">
+        <div className="flex items-center gap-1 mt-2 opacity-0 group-hover:opacity-100 transition-opacity">
+          <span className="text-white text-xs" style={{ fontFamily: 'Hanken Grotesk, sans-serif' }}>Read story</span>
+          <svg width="8" height="13" viewBox="0 0 4 8" fill="none"><path d="M0.5 0.5L3.5 4L0.5 7.5" stroke="white" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ── Case Study 3 – JM Medispa ──────────────────────────────────────────── */
+function CaseStudy3() {
+  return (
+    <div className="relative rounded-xl overflow-hidden cursor-pointer group" style={{ height: 200, boxShadow: '0 2px 12px rgba(0,0,0,0.15)' }}>
+      <img src="https://framerusercontent.com/images/t7a8XEB9Lx726pktH6TT9ZkhSsI.jpg?width=1200&height=675" alt="How JM Medispa added +£40,000, +32 Google Reviews, and +29 Referrals in her first 45 Days using SMNMEDIA" className="w-full h-full object-cover" />
+      <div className="absolute top-3 left-3">
+        <img src="https://framerusercontent.com/images/BgY9sw1sb9dD1A4C2ftZ7qHYic.webp?width=876&height=379" alt="JM Medispa logo" className="h-8 object-contain opacity-90" />
+      </div>
+      <div className="absolute bottom-0 left-0 right-0 p-4">
+        <div className="flex items-center gap-1 mt-2 opacity-0 group-hover:opacity-100 transition-opacity">
+          <span className="text-white text-xs" style={{ fontFamily: 'Hanken Grotesk, sans-serif' }}>Read story</span>
+          <svg width="8" height="13" viewBox="0 0 4 8" fill="none"><path d="M0.5 0.5L3.5 4L0.5 7.5" stroke="white" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ── Case Study 4 – Harvey Nichols / Dr. Zoya ───────────────────────────── */
+function CaseStudy4() {
+  return (
+    <div className="relative rounded-xl overflow-hidden cursor-pointer group" style={{ height: 200, boxShadow: '0 2px 12px rgba(0,0,0,0.15)' }}>
+      <img src="https://framerusercontent.com/images/ggqZxW5RaEzS3HzRC5S6O6Lv7sM.webp?width=1282&height=711" alt="Why Harvey Nichols clinic owner Dr. Zoya chose SMNMEDIA to exceed patient expectations" className="w-full h-full object-cover" />
+      <div className="absolute top-3 left-3">
+        <img src="https://framerusercontent.com/images/nReJkgaUdJPs6auYmyCSBpmxT8I.png?width=2048&height=1106" alt="Dr. Zoya logo" className="h-8 object-contain opacity-90" />
+      </div>
+      <div className="absolute bottom-0 left-0 right-0 p-4">
+        <div className="flex items-center gap-1 mt-2 opacity-0 group-hover:opacity-100 transition-opacity">
+          <span className="text-white text-xs" style={{ fontFamily: 'Hanken Grotesk, sans-serif' }}>Read story</span>
+          <svg width="8" height="13" viewBox="0 0 4 8" fill="none"><path d="M0.5 0.5L3.5 4L0.5 7.5" stroke="white" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ── Case Study Logo Button 1 – Cultskin ────────────────────────────────── */
+function CaseStudyLogoBtn1() {
+  return (
+    <button className="transition-opacity" style={{ opacity: 0.35 }}>
+      <img src="https://framerusercontent.com/images/1SMWONWvvsjdpjjZn4f9oBd8xoo.png?width=730&height=244" alt="Cultskin logo" className="h-8 object-contain" />
+    </button>
+  );
+}
+
+/* ── Case Study Logo Button 2 – SLA Medical (active) ────────────────────── */
+function CaseStudyLogoBtn2() {
+  return (
+    <button className="transition-opacity" style={{ opacity: 1 }}>
+      <img src="https://framerusercontent.com/images/D1KYr6d9JuRnXi9g07U5YqPq4.png?width=414&height=229" alt="SLA Medical logo" className="h-8 object-contain" />
+    </button>
+  );
+}
+
+/* ── Case Study Logo Button 3 – JM Medispa ──────────────────────────────── */
+function CaseStudyLogoBtn3() {
+  return (
+    <button className="transition-opacity" style={{ opacity: 0.35 }}>
+      <img src="https://framerusercontent.com/images/BgY9sw1sb9dD1A4C2ftZ7qHYic.webp?width=876&height=379" alt="JM Medispa logo" className="h-8 object-contain" />
+    </button>
+  );
+}
+
+/* ── Case Study Logo Button 4 – Dr. Zoya ────────────────────────────────── */
+function CaseStudyLogoBtn4() {
+  return (
+    <button className="transition-opacity" style={{ opacity: 0.35 }}>
+      <img src="https://framerusercontent.com/images/nReJkgaUdJPs6auYmyCSBpmxT8I.png?width=2048&height=1106" alt="Dr. Zoya logo" className="h-8 object-contain" />
+    </button>
+  );
 }
