@@ -263,7 +263,6 @@ export function CaseStudiesSection() {
             <div className="flex items-center justify-around mt-6 gap-4">
               {cases.map((c, i) =>
               <button key={i} onClick={() => setActiveIdx(i)} className="transition-opacity" style={{ opacity: i === activeIdx ? 1 : 0.35 }}>
-                  <img src={c.logo} alt="logo" className="h-8 object-contain" />
                 </button>
               )}
             </div>
