@@ -1,0 +1,104 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,400;0,500;0,600;0,700;0,900;1,400;1,600;1,700;1,900&family=DM+Sans:wght@400;500;600&display=swap');
+
+:root {
+  --color-pink: #d9347e;
+  --color-pink-light: #ffd9eb;
+  --color-pink-bg: #ffe0f0;
+  --color-dark: #17151d;
+  --color-navy: #0a2540;
+  --color-text: #435266;
+  --color-muted: #5d5b5b;
+  --color-border: #eaeaea;
+  --color-bg-light: #f7f7f7;
+  --color-smnred: #CC0000;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Hanken Grotesk', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6, p, figure {
+  margin: 0;
+}
+
+/* Ticker/marquee animation */
+@keyframes ticker-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.ticker-track {
+  animation: ticker-scroll 30s linear infinite;
+}
+
+.ticker-track:hover {
+  animation-play-state: paused;
+}
+
+/* Slideshow */
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* Float animations for CTA button */
+@keyframes float1 {
+  0%, 100% { transform: translate(0%, 0%); }
+  25% { transform: translate(60%, -40%); }
+  50% { transform: translate(-30%, 70%); }
+  75% { transform: translate(80%, 30%); }
+}
+
+@keyframes float2 {
+  0%, 100% { transform: translate(0%, 0%); }
+  33% { transform: translate(-50%, 50%); }
+  66% { transform: translate(90%, -20%); }
+}
+
+@keyframes float3 {
+  0%, 100% { transform: translate(0%, 0%); }
+  20% { transform: translate(40%, 80%); }
+  40% { transform: translate(-60%, -50%); }
+  60% { transform: translate(100%, 60%); }
+  80% { transform: translate(-20%, -80%); }
+}
+
+@keyframes float4 {
+  0%, 100% { transform: translate(0%, 0%); }
+  50% { transform: translate(-80%, 40%); }
+}
+
+.float-blob-1 { animation: float1 10s ease-in-out infinite; }
+.float-blob-2 { animation: float2 8s ease-in-out -2s infinite; }
+.float-blob-3 { animation: float3 12s ease-in-out -4s infinite; }
+.float-blob-4 { animation: float4 9s ease-in-out -1s infinite; }
+
+/* Progress bar animation */
+@keyframes progress-fill {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+.mark-highlight {
+  background-color: #ffd9eb;
+  color: #d9347e;
+  border-radius: 2px;
+  padding: 0 4px;
+  display: inline;
+}
+
+/* Scrollbar hide */
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
