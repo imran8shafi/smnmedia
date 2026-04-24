@@ -248,7 +248,6 @@ export function CaseStudiesSection() {
 
                   {/* Logo */}
                   <div className="absolute top-3 left-3">
-                    <img src={c.logo} alt="clinic logo" className="h-8 object-contain opacity-90" />
                   </div>
                   <div className="absolute bottom-0 left-0 right-0 p-4">
                     <div className="flex items-center gap-1 mt-2 opacity-0 group-hover:opacity-100 transition-opacity">
