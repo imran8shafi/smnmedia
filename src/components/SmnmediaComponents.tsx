@@ -246,7 +246,6 @@ export function CaseStudiesSection() {
                 style={{ height: 200, boxShadow: '0 2px 12px rgba(0,0,0,0.15)' }}
                 onClick={() => setActiveIdx(i)}>
 
-                  <img src={c.img} alt={c.title} className="w-full h-full object-cover" />
                   {/* Logo */}
                   <div className="absolute top-3 left-3">
                     <img src={c.logo} alt="clinic logo" className="h-8 object-contain opacity-90" />
